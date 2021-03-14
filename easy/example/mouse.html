@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>test</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" />
+        <style>
+            body{
+                cursor: none;
+            }
+
+            .cursor_item{
+                width: 50px;
+                height: 50px;
+                background: red;
+                position: absolute;
+                left: 0;
+                top: 0;
+                margin-top: -25px;
+                margin-left: -25px;
+                transition: all 1s ease-in-out;
+            }
+        </style>
+        <script>
+            let cursor;
+            let h1; 
+            let x = 0, y = 0;
+            let mx = 0, my = 0;
+            const speed = 0.05;
+            const mouseFunc = (e) =>{
+                x = e.clientX, y = e.clientY;
+                h1.innerHTML = `x: ${x} y: ${y}`;
+                cursor.style.transform = `translate(${x}px, ${y}px)`;
+            }
+
+            const loop = () =>{
+                mx += (x - mx) * speed;
+                my += (y - my) * speed;
+
+                window.requestAnimationFrame(loop);
+            }
+
+            window.onload = () =>{ 
+                cursor = document.getElementsByClassName("cursor_item")[0];
+                h1 = document.getElementsByTagName("h1")[0];
+                document.addEventListener("mousemove", mouseFunc);
+                // loop();
+            }
+        </script>
+    </head>
+
+    <body>
+        <h1>test</h1>
+        <div class="cursor_item"></div>
+    </body>
+</html>

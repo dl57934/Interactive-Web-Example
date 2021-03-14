@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>test</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" />
+        <style>
+            body {
+                position: relative;
+                background-color: black;
+                cursor: none;
+            }
+            h1 {
+                color: #fff;
+            }
+            .cursor_item{
+                position: absolute;
+                width: 100px;
+                height: 100px;
+                background-color: red;
+                left: 0;
+                top:0;
+                margin: -50px 0 0 -50px;
+                transition: all 1s cubic-bezier(0.570, -0.140, 0.345, 1.225);
+            }
+            button{
+                font-size: 40px;
+                font-weight: bold;
+                background-color: #fff;
+                color: red;
+                cursor: pointer;
+                transition: all .5s cubic-bezier(0.800, 0.000, 0.245, 1.000);
+                padding: 30px 80px;
+                margin: 50px;
+            }
+            button:hover{
+                background: red;
+                color: #fff;
+                font-size: 150px;
+                padding: 100px 160px;
+            }
+        </style>
+        <script>
+            let x = 0, y = 0;
+            let mx = 0, my = 0;
+            let speed = 0.03;
+            let h1;
+
+            window.onload = () =>{
+                let cursor_item = document.getElementsByClassName("cursor_item")[0];
+                // h1 = document.getElementsByTagName("h1")[0];
+
+                const mouseFunc = (e) => {
+                    x = e.clientX;
+                    y = e.clientY;
+                    cursor_item.style.transform = `translate(${x}px, ${y}px)`;
+                }
+
+                // const loop = ()=>{
+                //     mx += (x-mx) * speed;
+                //     my += (y-my) * speed;
+                //     h1.innerHTML = `x: ${x} y: ${y}`;
+                
+                //     // window.requestAnimationFrame(loop);
+                // }
+                
+                // loop();
+                window.addEventListener("click", mouseFunc, false);   
+            }
+        </script>
+    </head>
+
+    <body>
+        <h1>test</h1>
+        <button>start</button>
+        <div class="cursor_item"></div>
+    </body>
+</html>
